@@ -9,10 +9,6 @@ const SearchScreen = (props) => {
     const [term, setTerm] = useState("");
     const [searchAPI, restaurants, errorMessage] = useRestaurants();
 
-    useEffect(() => {
-        searchAPI('pasta');
-    }, []);
-
     return <View>
         <SearchBar
             term={term}

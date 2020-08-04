@@ -20,6 +20,10 @@ const useRestaurants  = () => {
             setErrorMessage("Something Went Wrong");
         })
     }
+    useEffect(() => {
+        searchAPI('pasta');
+    }, []);
+
     return [searchAPI, restaurants, errorMessage, ]
 }
 
