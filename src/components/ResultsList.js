@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
-import SearchBar from '../components/SearchBar'
-import yelp from '../api/yelp'
-import useRestaurants from '../hooks/useRestaurants'
 import { FlatList } from 'react-native'
+import ResultDetails from './ResultDetails'
 
 const ResultsList = ({ title, results }) => {
 
@@ -17,7 +15,7 @@ const ResultsList = ({ title, results }) => {
             data={results}
             keyExtractor={(item) => item.id}
             renderItem={({ item, index }) => {
-                return <Text>{item.name}</Text>
+                return <ResultDetails result={item } />
             }}
         />
     </View>
@@ -26,7 +24,8 @@ const ResultsList = ({ title, results }) => {
 const styles = StyleSheet.create({
     title: {
         fontSize: 18,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        marginLeft: 15,
     }
 })
 
