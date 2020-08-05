@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import yelp from "../api/yelp";
 
 
@@ -7,6 +7,7 @@ const useRestaurants  = () => {
     const [errorMessage, setErrorMessage] = useState("")
 
     const searchAPI = (searchTerm) => {
+        console.log("serching APIs")
         yelp.get("/search", {
             params: {
                 limit: 50,
