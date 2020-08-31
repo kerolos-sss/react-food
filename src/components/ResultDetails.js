@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
         width: 250,
         borderRadius: 5,
         height: 120,
+        marginBottom: 5
     },
     name: {
         fontSize: 14,

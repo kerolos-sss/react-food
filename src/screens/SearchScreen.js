@@ -4,9 +4,17 @@ import SearchBar from '../components/SearchBar'
 import yelp from '../api/yelp'
 import useRestaurants from '../hooks/useRestaurants'
 import ResultsList from '../components/ResultsList'
+import { ScrollView } from 'react-native-gesture-handler'
 
+import { createStackNavigator, NavigationStackProp } from 'react-navigation-stack';
+/**
+ * 
+ * @param {NavigationStackProp} props 
+ */
 const SearchScreen = (props) => {
-
+    console.log(props);
+    // let { navigation } = props;
+    
     const [term, setTerm] = useState("");
     const [searchAPI, restaurants, errorMessage] = useRestaurants();
 
@@ -14,24 +22,33 @@ const SearchScreen = (props) => {
         return restaurants.filter(item => item.price == price)
     };
 
-    return <View>
+    return <>
         <SearchBar
             term={term}
             onTermChange={(newTerm) => setTerm(newTerm)}
             onTermSubmit={() => { searchAPI(term) }}
         />
         {errorMessage ? <Text>{errorMessage}</Text> : null}
-        <Text>We have found {restaurants.length} results for the term:  {term} </Text>
-        <ResultsList title="Cost Effective" 
-            results={filterResultsByPrice('$')}
-        />
-        <ResultsList title="Pricier" 
-        results={filterResultsByPrice('$$')}
-        />
-        <ResultsList title="Big Spender" 
-        results={filterResultsByPrice('$$$')}
-        />
-    </View>
+
+        <ScrollView >
+            {/* <Text>We have found {restaurants.length} results for the term:  {term} </Text> */}
+            <ResultsList
+                // navigation={navigation}
+                title="Cost Effective"
+                results={filterResultsByPrice('$')}
+            />
+            <ResultsList
+                // navigation={navigation}
+                title="Pricier"
+                results={filterResultsByPrice('$$')}
+            />
+            <ResultsList
+                // navigation={navigation}
+                title="Big Spender"
+                results={filterResultsByPrice('$$$')}
+            />
+        </ScrollView>
+    </>
 }
 
 const styles = StyleSheet.create({})
